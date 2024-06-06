@@ -6,21 +6,10 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
 
-    let { display, type } = req.query;
     let listAProperty;
+    
     try {
-        if (display && type) {
-            listAProperty = await RealEstate.find({ display: display, type: type });
-        }
-        else if (display) {
-            listAProperty = await RealEstate.find({ display: display })
-        }
-        else if (type) {
-            listAProperty = await RealEstate.find({ type: type });
-        }
-        else {
-            listAProperty = await RealEstate.find({});
-        }
+        listAProperty = await RealEstate.find(req.query);
         return res.status(200).json(listAProperty);
     }
     catch (error) {
