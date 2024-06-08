@@ -18,6 +18,41 @@ router.get("/:id", async (req, res) => {
     }
 })
 
+router.put("/:id", async (req, res) => {
+
+    let { id } = req.params;
+    try {
+        let listAProperty = await ListAProperty.findOne({ _id: id });
+        if (!listAProperty) {
+            return res.status(404).json({ message: "ListAProperty not found" });
+        }
+
+        Object.keys(req.body).forEach(key => {
+            listAProperty[key] = req.body[key];
+        });
+
+        await listAProperty.save();
+        return res.status(200).json(listAProperty);
+    }
+    catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: "Something went wrong" });
+    }
+})
+
+router.delete("/:id", async (req, res) => {
+
+    let { id } = req.params;
+    try {
+        const listAProperty = await ListAProperty.findOneAndDelete({ _id: id });
+        return res.status(200).json(listAProperty);
+    }
+    catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: "Something went wrong" });
+    }
+})
+
 router.get("/", async (req, res) => {
 
     try {

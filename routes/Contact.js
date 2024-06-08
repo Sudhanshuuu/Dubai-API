@@ -21,7 +21,43 @@ router.get("/:id", async (req, res) => {
 router.get("/", async (req, res) => {
 
     try {
-        const contact = await Contact.find({});
+        let contact = await Contact.find({});
+        return res.status(200).json(contact);
+    }
+    catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: "Something went wrong" });
+    }
+})
+
+router.put("/:id", async (req, res) => {
+
+    let { id } = req.params;
+    try {
+        const contact = await Contact.findOne({ _id: id });
+        if (!contact) {
+            return res.status(404).json({ message: "contact not found" });
+        }
+
+       
+        Object.keys(req.body).forEach(key => {
+            contact[key] = req.body[key];
+        });
+
+        await contact.save();
+        return res.status(200).json(contact);
+    }
+    catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: "Something went wrong" });
+    }
+})
+
+router.delete("/:id", async (req, res) => {
+
+    let { id } = req.params;
+    try {
+        const contact = await Contact.findOneAndDelete({ _id: id });
         return res.status(200).json(contact);
     }
     catch (error) {
