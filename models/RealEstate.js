@@ -67,9 +67,17 @@ const RealEstateSchema = new mongoose.Schema({
         type: [String],
         required: true
     },
-    feature: {
+    features: {
+        type: [String],
+    },
+    propertyType: {
         type: String,
-    }
+    },
+    propertyStatus: {
+        type: String,
+    },
+
+
 })
 
 const RealEstate = new mongoose.model('RealEstate', RealEstateSchema);
