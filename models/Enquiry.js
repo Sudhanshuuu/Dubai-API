@@ -1,10 +1,9 @@
 const mongoose = require('mongoose');
 const EnquirySchema = new mongoose.Schema({
- 
+
     email: {
         type: String,
         required: true,
-        unique: true,
     },
     name: {
         type: String,
@@ -19,6 +18,14 @@ const EnquirySchema = new mongoose.Schema({
         required: true,
     },
     message: {
+        type: String,
+        required: true
+    },
+    propertyId: {
+        type: String,
+        required: true
+    },
+    propertyName: {
         type: String,
         required: true
     }

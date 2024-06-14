@@ -66,9 +66,22 @@ router.delete("/:id", async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    try {
 
-        const newEnquiry = new Enquiry({ ...req.body, status: 'pending' });
+    const { email, name, phone, status, message, propertyId , propertyName } = req.body;
+
+    // Optional: Validate the request data
+
+    try {
+        const newEnquiry = new Enquiry({
+            email,
+            name,
+            phone,
+            status,
+            message,
+            propertyId,
+            propertyName,
+            status: 'pending'
+        });
 
         await newEnquiry.save();
         return res.status(200).json(newEnquiry);
