@@ -7,7 +7,7 @@ const router = express.Router();
 router.get("/", async (req, res) => {
 
     let listAProperty;
-    
+
     try {
         listAProperty = await RealEstate.find(req.query);
         return res.status(200).json(listAProperty);
@@ -47,7 +47,7 @@ router.put('/:id', async (req, res) => {
         for (const key in req.body) {
             realEstate[key] = req.body[key];
         }
-        if (req.files) {
+        if (req.files && req.files.length > 0) {
             realEstate.images.splice(0, realEstate.images.length);
             req.files.forEach(file => {
                 realEstate.images.push(file.path);
