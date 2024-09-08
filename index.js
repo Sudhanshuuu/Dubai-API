@@ -8,7 +8,7 @@ const enquiryRoute = require('./routes/Enquiry');
 const contactRoute = require('./routes/Contact');
 const listAPropertyRoute = require('./routes/ListAProperty');
 const realEstateRoute = require("./routes/RealEstate");
-const careerRoute = require("./routes/Career");
+const careerRoute = require("./routes/Job");
 const upload = require('./middleware/Upload');
 
 app.use(cors());
@@ -32,7 +32,7 @@ app.use("/enquiry", enquiryRoute);
 app.use("/contact", contactRoute);
 app.use("/listAProperty", listAPropertyRoute);
 app.use("/realEstate", upload.array('images'), realEstateRoute);
-app.use("/career", upload.single('CV'), careerRoute);
+app.use("/job", upload.single('CV'), careerRoute);
 
 app.get("/", (req, res) => {
     res.send("It's on");
