@@ -9,6 +9,7 @@ const contactRoute = require('./routes/Contact');
 const listAPropertyRoute = require('./routes/ListAProperty');
 const realEstateRoute = require("./routes/RealEstate");
 const careerRoute = require("./routes/Job");
+const testRoute = require("./routes/Test");
 const upload = require('./middleware/Upload');
 
 app.use(cors());
@@ -33,6 +34,7 @@ app.use("/contact", contactRoute);
 app.use("/listAProperty", listAPropertyRoute);
 app.use("/realEstate", upload.array('images'), realEstateRoute);
 app.use("/job", upload.single('CV'), careerRoute);
+app.use("/test", testRoute);
 
 app.get("/", (req, res) => {
     res.send("It's on");
