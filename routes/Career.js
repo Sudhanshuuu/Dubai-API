@@ -3,6 +3,7 @@ const Career = require('../models/Career');
 const router = express.Router();
 
 // Define your routes
+//career routes
 
 router.get("/", async (req, res) => {
 

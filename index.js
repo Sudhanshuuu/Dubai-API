@@ -19,6 +19,7 @@ app.use('/uploads', express.static('uploads'));
 const mongoDB = process.env.MONGODB_URI;
 mongoose.connect(mongoDB);
 
+//connection
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once('open', () => {
